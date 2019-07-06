@@ -7,7 +7,7 @@ namespace RelationalLock.Bench {
 
     public class SequentialBench {
 
-        [Params(10, 100)]
+        [Params(1, 10, 100)]
         public int LoopCount;
 
         private IRelationalLockManager manager2;
