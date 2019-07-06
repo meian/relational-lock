@@ -9,6 +9,8 @@ using Xunit.Abstractions;
 namespace RelationalLock.Tests {
 
     public class RelationalLockManagerTests : TestBase {
+        private IRelationalLockBuilder builder;
+        private RelationalLockConfigurator configurator;
 
         #region setup
 
@@ -17,6 +19,8 @@ namespace RelationalLock.Tests {
 
         [Background]
         public void Setup() {
+            configurator = new RelationalLockConfigurator();
+            builder = new RelationalLockBuilder();
         }
 
         private (RelationalLockConfigurator configurator, IRelationalLockBuilder builder) NewRelationalBuilderSet() =>
@@ -27,7 +31,6 @@ namespace RelationalLock.Tests {
         [Scenario(DisplayName = "デフォルト有効期限が有効になること")]
         public void DefaultExpiredInTest() {
             IRelationalLockManager manager = default;
-            var (configurator, builder) = NewRelationalBuilderSet();
             "初期化"
                 .x(c => {
                     configurator.DefaultExpireIn = TimeSpan.FromMilliseconds(500);
@@ -59,7 +62,6 @@ namespace RelationalLock.Tests {
         [Scenario(DisplayName = "デフォルトタイムアウトが有効になること")]
         public void DefaultTimeoutTest() {
             IRelationalLockManager manager = default;
-            var (configurator, builder) = NewRelationalBuilderSet();
             var source = new CancellationTokenSource();
             "初期化"
                 .x(c => {
@@ -91,7 +93,6 @@ namespace RelationalLock.Tests {
         [Scenario(DisplayName = "関連性ないキーはロックされないことの確認")]
         public void IsolationTest() {
             IRelationalLockManager manager = null;
-            var (configurator, builder) = NewRelationalBuilderSet();
             "初期化"
                 .x(c => {
                     configurator.RegisterRelation("key1", "key2");
@@ -127,7 +128,6 @@ namespace RelationalLock.Tests {
         [Scenario(DisplayName = "同じキーをロック試行してタイムアウトが起こることの確認")]
         public void SelfTimeoutTest() {
             IRelationalLockManager manager = default;
-            var (configurator, builder) = NewRelationalBuilderSet();
             "初期化"
                 .x(c => {
                     configurator.RegisterRelation("key1", "key2");
@@ -158,7 +158,6 @@ namespace RelationalLock.Tests {
         [Scenario(DisplayName = "正常に関連ロックが取得できることの確認")]
         public void SuccessTest() {
             IRelationalLockManager manager = default;
-            var (configurator, builder) = NewRelationalBuilderSet();
             "初期化"
                 .x(c => {
                     configurator.RegisterRelation("key1", "key2");
@@ -193,7 +192,6 @@ namespace RelationalLock.Tests {
         [Scenario(DisplayName = "タイムアウトが起こることの確認")]
         public void TimeoutTest() {
             IRelationalLockManager manager = default;
-            var (configurator, builder) = NewRelationalBuilderSet();
             "初期化"
                 .x(c => {
                     configurator.RegisterRelation("key1", "key2");
