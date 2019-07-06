@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Xbehave;
-using Xbehave.Sdk;
 using Xunit.Abstractions;
 
 namespace RelationalLock.Tests {
@@ -24,6 +23,70 @@ namespace RelationalLock.Tests {
             (new RelationalLockConfigurator(), new RelationalLockBuilder());
 
         #endregion setup
+
+        [Scenario(DisplayName = "デフォルト有効期限が有効になること")]
+        public void DefaultExpiredInTest() {
+            IRelationalLockManager manager = default;
+            var (configurator, builder) = NewRelationalBuilderSet();
+            "初期化"
+                .x(c => {
+                    configurator.DefaultExpireIn = TimeSpan.FromMilliseconds(500);
+                    configurator.RegisterRelation("key1", "key2");
+                    manager = builder.Build(configurator).Using(c);
+                });
+            "1つ目のロック取得"
+                .x(() => {
+                    manager.AcquireLock("key1").Should().BeTrue();
+                    manager.GetState("key1").State.Should().Be(LockState.Locked);
+                });
+            "関連キーのロック取得が時間内に処理されることの確認(TimeSpan)"
+                .x(() => {
+                    manager.AcquireLock("key2", (TimeSpan?)TimeSpan.FromMilliseconds(1000), (TimeSpan?)default).Should().BeTrue();
+                    manager.Release("key2");
+                });
+            "1つ目のロック取得(再テスト用)"
+               .x(() => {
+                   manager.AcquireLock("key1").Should().BeTrue();
+                   manager.GetState("key1").State.Should().Be(LockState.Locked);
+               });
+            "関連キーのロック取得が時間内に処理されることの確認(DateTime)"
+                 .x(() => {
+                     manager.AcquireLock("key2", TimeSpan.FromSeconds(2000), expireAt: (DateTime?)default).Should().BeTrue();
+                     manager.Release("key2");
+                 });
+        }
+
+        [Scenario(DisplayName = "デフォルトタイムアウトが有効になること")]
+        public void DefaultTimeoutTest() {
+            IRelationalLockManager manager = default;
+            var (configurator, builder) = NewRelationalBuilderSet();
+            var source = new CancellationTokenSource();
+            "初期化"
+                .x(c => {
+                    configurator.DefaultTimeout = TimeSpan.FromMilliseconds(1000);
+                    configurator.RegisterRelation("key1", "key2");
+                    manager = builder.Build(configurator).Using(c);
+                    source.CancelAfter(2000);
+                });
+            "1つ目のロック取得"
+                .x(() => {
+                    manager.AcquireLock("key1").Should().BeTrue();
+                    manager.GetState("key1").State.Should().Be(LockState.Locked);
+                });
+            "関連キーのロック取得でタイムアウトが起こることの確認"
+                .x(() => {
+                    try {
+                        var task = Task.Run(() => {
+                            manager.AcquireLock("key2").Should().BeFalse();
+                        });
+                        task.Wait(source.Token);
+                    }
+                    catch (OperationCanceledException) {
+                        Helper.WriteLine("too long wait for key2.");
+                        throw;
+                    }
+                });
+        }
 
         [Scenario(DisplayName = "関連性ないキーはロックされないことの確認")]
         public void IsolationTest() {
