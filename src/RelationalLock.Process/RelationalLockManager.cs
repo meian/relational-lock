@@ -8,6 +8,8 @@ namespace RelationalLock {
 
     public class RelationalLockManager : IRelationalLockManager {
         private readonly ImmutableDictionary<string, LockContainer> lockMap;
+        private TimeSpan defaultExpireIn;
+        private TimeSpan defaultTimeout;
         private int disposed;
 
         internal RelationalLockManager(RelationalLockConfigurator configurator) {
@@ -20,6 +22,8 @@ namespace RelationalLock {
                 info => info.Key,
                 info => new LockContainer(info.Key, info.LockKeys.Select(key => semaphoreMap[key])));
             AvailableKeys = lockMap.Keys.OrderBy(_ => _).ToImmutableArray();
+            defaultTimeout = configurator.DefaultTimeout;
+            defaultExpireIn = configurator.DefaultExpireIn;
         }
 
         ~RelationalLockManager() {
@@ -29,11 +33,11 @@ namespace RelationalLock {
         public bool AcquireLock(string key, TimeSpan? timeout = null, TimeSpan? expireIn = null) {
             CheckIsDisposed();
             IsValidKey(key);
-            return lockMap[key].Acquire(timeout.FromNowAt(), expireIn.Correct());
+            return lockMap[key].Acquire((timeout ?? defaultTimeout).FromNowAt(), (expireIn ?? defaultExpireIn).Correct());
         }
 
         public bool AcquireLock(string key, TimeSpan timeout, DateTimeOffset? expireAt = null) =>
-            AcquireLock(key, timeout, expireAt.FromNow());
+            AcquireLock(key, timeout, expireAt != null ? expireAt.Value.FromNow() : defaultExpireIn);
 
         public void Dispose() => Dispose(true);
 

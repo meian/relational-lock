@@ -18,8 +18,6 @@ namespace RelationalLock {
 
         public static TimeSpan FromNow(this DateTimeOffset datetime) => (datetime - DateTimeOffset.Now).Correct();
 
-        public static TimeSpan FromNow(this DateTimeOffset? datetime) => (datetime ?? DateTimeOffset.MaxValue).FromNow();
-
         public static DateTimeOffset FromNowAt(this TimeSpan timespan) => DateTimeOffset.Now.Add(timespan.Correct());
 
         public static DateTimeOffset FromNowAt(this TimeSpan? timeSpan) => timeSpan.Correct().FromNowAt();
