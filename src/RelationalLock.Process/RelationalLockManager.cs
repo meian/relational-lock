@@ -33,7 +33,9 @@ namespace RelationalLock {
         public bool AcquireLock(string key, TimeSpan? timeout = null, TimeSpan? expireIn = null) {
             CheckIsDisposed();
             IsValidKey(key);
-            return lockMap[key].Acquire((timeout ?? defaultTimeout).FromNowAt(), (expireIn ?? defaultExpireIn).Correct());
+            var timeoutAt = (timeout ?? defaultTimeout).FromNowAt();
+            var expireInCorrected = expireIn != null ? expireIn.Value.Correct() : defaultExpireIn;
+            return lockMap[key].Acquire(timeoutAt, expireInCorrected);
         }
 
         public bool AcquireLock(string key, TimeSpan timeout, DateTimeOffset? expireAt = null) =>
