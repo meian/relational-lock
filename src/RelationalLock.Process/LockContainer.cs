@@ -33,7 +33,7 @@ namespace RelationalLock {
             Dispose(false);
         }
 
-        public bool Acquire(DateTimeOffset timeoutAt, TimeSpan expireIn) {
+        public bool Acquire(DateTime timeoutAt, TimeSpan expireIn) {
             CheckIsDisposed();
             return SyncAction<bool?>(() => {
                 locked = true;

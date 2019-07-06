@@ -5,14 +5,14 @@ namespace RelationalLock {
 
     public class LockStateInfo {
 
-        public LockStateInfo(string key, LockState state, string ownerKey = default, DateTimeOffset? expireAt = default) {
+        public LockStateInfo(string key, LockState state, string ownerKey = default, DateTime? expireAt = default) {
             Key = key;
             State = state;
             OwnerKey = ownerKey;
             ExpireAt = expireAt;
         }
 
-        public DateTimeOffset? ExpireAt { get; }
+        public DateTime? ExpireAt { get; }
 
         public string Key { get; }
 

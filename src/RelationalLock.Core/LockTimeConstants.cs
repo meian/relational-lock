@@ -13,9 +13,9 @@ namespace RelationalLock {
             return span > max ? max : span < min ? min : span;
         }
 
-        public static TimeSpan FromNow(this DateTimeOffset datetime) => (datetime - DateTimeOffset.Now).Correct();
+        public static TimeSpan FromNow(this DateTime datetime) => (datetime - DateTime.Now).Correct();
 
-        public static DateTimeOffset FromNowAt(this TimeSpan timespan) => DateTimeOffset.Now.Add(timespan.Correct());
+        public static DateTime FromNowAt(this TimeSpan timespan) => DateTime.Now.Add(timespan.Correct());
 
         internal static TimeSpan ValidDefaultTimeSpan(this TimeSpan span, string name) {
             if (span < MinTimeSpan || MaxTimeSpan < span) {

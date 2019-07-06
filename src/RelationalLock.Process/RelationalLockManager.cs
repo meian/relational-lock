@@ -38,7 +38,7 @@ namespace RelationalLock {
             return lockMap[key].Acquire(timeoutAt, expireInCorrected);
         }
 
-        public bool AcquireLock(string key, TimeSpan timeout, DateTimeOffset? expireAt = null) =>
+        public bool AcquireLock(string key, TimeSpan timeout, DateTime? expireAt = null) =>
             AcquireLock(key, timeout, expireAt != null ? expireAt.Value.FromNow() : defaultExpireIn);
 
         public void Dispose() => Dispose(true);

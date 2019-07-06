@@ -7,7 +7,7 @@ namespace RelationalLock {
 
         bool AcquireLock(string key, TimeSpan? timeout = default, TimeSpan? expireIn = default);
 
-        bool AcquireLock(string key, TimeSpan timeout, DateTimeOffset? expireAt = default);
+        bool AcquireLock(string key, TimeSpan timeout, DateTime? expireAt = default);
 
         Dictionary<string, LockStateInfo> GetAllStates();
 
