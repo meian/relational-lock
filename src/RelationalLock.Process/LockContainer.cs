@@ -12,11 +12,12 @@ namespace RelationalLock {
     internal class LockContainer : IDisposable {
         private readonly SemaphoreSlim mainSemaphore;
         private readonly CancellationTokenSource mainSource;
-        private readonly CancellationTokenSource releaseSource;
+        private readonly object releaseSourceLock = new object();
         private readonly ImmutableList<NamedSemaphore> semaphoreList;
         private readonly Stack<NamedSemaphore> waitedStack;
         private int disposed;
         private bool locked;
+        private CancellationTokenSource releaseSource;
 
         public LockContainer(string key, IEnumerable<NamedSemaphore> targetList) {
             Key = key;
@@ -61,7 +62,10 @@ namespace RelationalLock {
                 return;
             }
             SyncAction(ReleaseCore);
-            releaseSource.Cancel();
+            lock (releaseSourceLock) {
+                releaseSource.Cancel();
+                releaseSource = new CancellationTokenSource();
+            }
         }
 
         private void CheckIsDisposed() {

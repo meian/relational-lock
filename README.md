@@ -138,25 +138,25 @@ Frequency=3328359 Hz, Resolution=300.4484 ns, Timer=TSC
 InvocationCount=10  LaunchCount=1  UnrollFactor=2
 WarmupCount=3
 
-| Job           | Runtime | Method       | LoopCount |        Mean |      Error |     StdDev |      Median | Ratio | RatioSD | Rank |
-| ------------- | ------- | ------------ | --------- | ----------: | ---------: | ---------: | ----------: | ----: | ------: | ---: |
-| .net 4.7.2    | Clr     | RunSequence2 | 1         |    16.18 us |  0.3134 us |  0.2778 us |    16.12 us |  1.14 |    0.02 |    2 |
-| .net core 2.2 | Core    | RunSequence2 | 1         |    14.19 us |  0.2805 us |  0.2623 us |    14.18 us |  1.00 |    0.00 |    1 |
-|               |         |              |           |             |            |            |             |       |         |      |
-| .net 4.7.2    | Clr     | RunSequence5 | 1         |    16.98 us |  0.3321 us |  0.5363 us |    16.89 us |  1.14 |    0.05 |    2 |
-| .net core 2.2 | Core    | RunSequence5 | 1         |    14.90 us |  0.2920 us |  0.5037 us |    14.68 us |  1.00 |    0.00 |    1 |
-|               |         |              |           |             |            |            |             |       |         |      |
-| .net 4.7.2    | Clr     | RunSequence2 | 10        |   140.45 us |  2.7819 us |  5.8069 us |   138.84 us |  1.20 |    0.06 |    2 |
-| .net core 2.2 | Core    | RunSequence2 | 10        |   119.07 us |  2.3706 us |  2.6349 us |   118.53 us |  1.00 |    0.00 |    1 |
-|               |         |              |           |             |            |            |             |       |         |      |
-| .net 4.7.2    | Clr     | RunSequence5 | 10        |   146.21 us |  3.0861 us |  3.3020 us |   145.88 us |  1.16 |    0.05 |    2 |
-| .net core 2.2 | Core    | RunSequence5 | 10        |   126.23 us |  3.2100 us |  4.1739 us |   125.92 us |  1.00 |    0.00 |    1 |
-|               |         |              |           |             |            |            |             |       |         |      |
-| .net 4.7.2    | Clr     | RunSequence2 | 100       | 1,339.02 us | 24.0970 us | 21.3614 us | 1,340.84 us |  1.16 |    0.02 |    2 |
-| .net core 2.2 | Core    | RunSequence2 | 100       | 1,149.39 us | 21.9526 us | 20.5345 us | 1,149.21 us |  1.00 |    0.00 |    1 |
-|               |         |              |           |             |            |            |             |       |         |      |
-| .net 4.7.2    | Clr     | RunSequence5 | 100       | 1,394.84 us | 23.7107 us | 22.1790 us | 1,390.60 us |  1.16 |    0.03 |    2 |
-| .net core 2.2 | Core    | RunSequence5 | 100       | 1,198.68 us | 19.3855 us | 18.1332 us | 1,199.09 us |  1.00 |    0.00 |    1 |
+|           Job | Runtime |       Method | LoopCount |        Mean |      Error |     StdDev | Ratio | RatioSD | Rank |
+|-------------- |-------- |------------- |---------- |------------:|-----------:|-----------:|------:|--------:|-----:|
+|    .net 4.7.2 |     Clr | RunSequence2 |         1 |    19.84 us |  0.3348 us |  0.2795 us |  1.26 |    0.03 |    2 |
+| .net core 2.2 |    Core | RunSequence2 |         1 |    15.78 us |  0.3022 us |  0.2827 us |  1.00 |    0.00 |    1 |
+|               |         |              |           |             |            |            |       |         |      |
+|    .net 4.7.2 |     Clr | RunSequence5 |         1 |    21.03 us |  0.4140 us |  0.5938 us |  1.26 |    0.04 |    2 |
+| .net core 2.2 |    Core | RunSequence5 |         1 |    16.74 us |  0.3262 us |  0.4572 us |  1.00 |    0.00 |    1 |
+|               |         |              |           |             |            |            |       |         |      |
+|    .net 4.7.2 |     Clr | RunSequence2 |        10 |   175.52 us |  3.5051 us |  5.4571 us |  1.25 |    0.05 |    2 |
+| .net core 2.2 |    Core | RunSequence2 |        10 |   140.59 us |  2.6936 us |  3.1020 us |  1.00 |    0.00 |    1 |
+|               |         |              |           |             |            |            |       |         |      |
+|    .net 4.7.2 |     Clr | RunSequence5 |        10 |   188.93 us |  3.7730 us |  5.8741 us |  1.28 |    0.05 |    2 |
+| .net core 2.2 |    Core | RunSequence5 |        10 |   143.74 us |  2.8643 us |  7.2905 us |  1.00 |    0.00 |    1 |
+|               |         |              |           |             |            |            |       |         |      |
+|    .net 4.7.2 |     Clr | RunSequence2 |       100 | 1,721.24 us | 31.8786 us | 29.8192 us |  1.32 |    0.03 |    2 |
+| .net core 2.2 |    Core | RunSequence2 |       100 | 1,306.33 us | 25.0781 us | 27.8743 us |  1.00 |    0.00 |    1 |
+|               |         |              |           |             |            |            |       |         |      |
+|    .net 4.7.2 |     Clr | RunSequence5 |       100 | 1,809.40 us | 30.1135 us | 28.1682 us |  1.30 |    0.03 |    2 |
+| .net core 2.2 |    Core | RunSequence5 |       100 | 1,390.87 us | 23.0622 us | 19.2580 us |  1.00 |    0.00 |    1 |
 ```
 
 ```:ParallelBench
@@ -176,14 +176,14 @@ Frequency=3328359 Hz, Resolution=300.4484 ns, Timer=TSC
 InvocationCount=10  LaunchCount=1  UnrollFactor=2
 WarmupCount=3
 
-| Job           | Runtime | Method      | LoopCount |        Mean |      Error |     StdDev |      Median | Ratio | RatioSD | Rank |
-| ------------- | ------- | ----------- | --------- | ----------: | ---------: | ---------: | ----------: | ----: | ------: | ---: |
-| .net 4.7.2    | Clr     | RunParallel | 1         |   107.67 us |   5.230 us |  15.256 us |   102.66 us |  1.74 |    0.25 |    2 |
-| .net core 2.2 | Core    | RunParallel | 1         |    61.01 us |   1.212 us |   2.091 us |    61.25 us |  1.00 |    0.00 |    1 |
-|               |         |             |           |             |            |            |             |       |         |      |
-| .net 4.7.2    | Clr     | RunParallel | 10        |   679.38 us |  16.015 us |  47.221 us |   676.56 us |  1.40 |    0.10 |    2 |
-| .net core 2.2 | Core    | RunParallel | 10        |   484.16 us |  10.871 us |  22.691 us |   477.14 us |  1.00 |    0.00 |    1 |
-|               |         |             |           |             |            |            |             |       |         |      |
-| .net 4.7.2    | Clr     | RunParallel | 100       | 6,039.49 us | 136.269 us | 133.834 us | 5,997.19 us |  1.33 |    0.03 |    2 |
-| .net core 2.2 | Core    | RunParallel | 100       | 4,528.50 us |  49.150 us |  45.975 us | 4,518.32 us |  1.00 |    0.00 |    1 |
+|           Job | Runtime |      Method | LoopCount |        Mean |      Error |    StdDev |      Median | Ratio | RatioSD | Rank |
+|-------------- |-------- |------------ |---------- |------------:|-----------:|----------:|------------:|------:|--------:|-----:|
+|    .net 4.7.2 |     Clr | RunParallel |         1 |    85.02 us |  1.6840 us |  3.696 us |    83.49 us |  1.83 |    0.14 |    2 |
+| .net core 2.2 |    Core | RunParallel |         1 |    46.31 us |  0.9568 us |  2.521 us |    46.15 us |  1.00 |    0.00 |    1 |
+|               |         |             |           |             |            |           |             |       |         |      |
+|    .net 4.7.2 |     Clr | RunParallel |        10 |   364.34 us |  8.2421 us | 20.062 us |   357.49 us |  1.05 |    0.05 |    2 |
+| .net core 2.2 |    Core | RunParallel |        10 |   348.62 us |  6.9635 us | 16.818 us |   341.88 us |  1.00 |    0.00 |    1 |
+|               |         |             |           |             |            |           |             |       |         |      |
+|    .net 4.7.2 |     Clr | RunParallel |       100 | 3,371.09 us | 78.7855 us | 93.789 us | 3,340.96 us |  1.21 |    0.04 |    2 |
+| .net core 2.2 |    Core | RunParallel |       100 | 2,805.21 us | 33.5526 us | 29.744 us | 2,797.50 us |  1.00 |    0.00 |    1 |
 ```
