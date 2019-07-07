@@ -41,6 +41,12 @@ namespace RelationalLock {
         public bool AcquireLock(string key, TimeSpan timeout, DateTime? expireAt = null) =>
             AcquireLock(key, timeout, expireAt != null ? expireAt.Value.FromNow() : defaultExpireIn);
 
+        public bool AcquireLock(string key, int timeoutMilliseconds, int? expireInMilliseconds = null) {
+            var timeout = TimeSpan.FromMilliseconds(timeoutMilliseconds);
+            var expireIn = expireInMilliseconds != null ? TimeSpan.FromMilliseconds(expireInMilliseconds.Value) : defaultExpireIn;
+            return AcquireLock(key, timeout, expireIn);
+        }
+
         public void Dispose() => Dispose(true);
 
         public Dictionary<string, LockStateInfo> GetAllStates() => AvailableKeys.ToDictionary(key => key, GetState);

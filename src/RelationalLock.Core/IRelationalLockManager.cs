@@ -9,6 +9,8 @@ namespace RelationalLock {
 
         bool AcquireLock(string key, TimeSpan timeout, DateTime? expireAt = default);
 
+        bool AcquireLock(string key, int timeoutMilliseconds, int? expireInMilliseconds = default);
+
         Dictionary<string, LockStateInfo> GetAllStates();
 
         LockStateInfo GetState(string key);

@@ -189,6 +189,30 @@ namespace RelationalLock.Tests {
                 });
         }
 
+        [Scenario(DisplayName = "タイムアウトが起こることの確認(int)")]
+        public void TimeoutIntTest() {
+            IRelationalLockManager manager = default;
+            "初期化"
+                .x(c => {
+                    configurator.RegisterRelation("key1", "key2");
+                    manager = builder.Build(configurator).Using(c);
+                });
+            "ロック取得"
+                .x(async () => {
+                    manager.AcquireLock("key1", 100, 1000).Should().BeTrue();
+                    manager.GetState("key1").State.Should().Be(LockState.Locked);
+                    await Task.Delay(100);
+                });
+            "有効期間内は取得できない"
+                .x(() => {
+                    manager.AcquireLock("key2", 500).Should().BeFalse();
+                });
+            "有効期間が過ぎたら取得できる"
+                .x(() => {
+                    manager.AcquireLock("key2", 500).Should().BeTrue();
+                });
+        }
+
         [Scenario(DisplayName = "タイムアウトが起こることの確認")]
         public void TimeoutTest() {
             IRelationalLockManager manager = default;
