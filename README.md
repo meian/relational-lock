@@ -2,6 +2,10 @@
 
 RelationalLock is a library that locks multiple keys registered with relationships.
 
+## Build Status
+
+[![Build Status](https://travis-ci.org/y-kitami/relational-lock.svg?branch=master)](https://travis-ci.org/y-kitami/relational-lock)
+
 ## Motivation
 
 An approach to control synchronization between systems with different architectures.
