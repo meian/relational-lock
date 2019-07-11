@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace RelationalLock {
 
-    public static class KeysUtil {
+    internal static class KeysUtil {
 
         public static string ToViewString(this string[] keys) {
             if (keys == null) {
