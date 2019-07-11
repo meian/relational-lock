@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace RelationalLock {
 
+    /// <summary>
+    /// Lock control instance by in process model.
+    /// </summary>
     public class RelationalLockManager : IRelationalLockManager {
         private readonly ImmutableDictionary<string, LockContainer> lockMap;
         private TimeSpan defaultExpireIn;
@@ -26,10 +29,20 @@ namespace RelationalLock {
             defaultExpireIn = configurator.DefaultExpireIn;
         }
 
+        /// <summary>
+        /// destructor
+        /// </summary>
         ~RelationalLockManager() {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Acquire a lock on key and related keys.
+        /// </summary>
+        /// <param name="key">key for locking</param>
+        /// <param name="timeout">timeout for requesting acquirement</param>
+        /// <param name="expireIn">expire period for acquired lock</param>
+        /// <returns>true if acquired lock, false if timeout</returns>
         public bool AcquireLock(string key, TimeSpan? timeout = null, TimeSpan? expireIn = null) {
             CheckIsDisposed();
             IsValidKey(key);
@@ -38,25 +51,55 @@ namespace RelationalLock {
             return lockMap[key].Acquire(timeoutAt, expireInCorrected);
         }
 
+        /// <summary>
+        /// Acquire a lock on key and related keys.
+        /// </summary>
+        /// <param name="key">key for locking</param>
+        /// <param name="timeout">timeout for requesting acquirement</param>
+        /// <param name="expireAt">expiration for acquired lock</param>
+        /// <returns>true if acquired lock, false if timeout</returns>
         public bool AcquireLock(string key, TimeSpan timeout, DateTime? expireAt = null) =>
             AcquireLock(key, timeout, expireAt != null ? expireAt.Value.FromNow() : defaultExpireIn);
 
+        /// <summary>
+        /// Acquire a lock on key and related keys.
+        /// </summary>
+        /// <param name="key">key for locking</param>
+        /// <param name="timeoutMilliseconds">timeout milliseconds for requesting acquirement</param>
+        /// <param name="expireInMilliseconds">expire period milliseconds for acquired lock</param>
+        /// <returns>true if acquired lock, false if timeout</returns>
         public bool AcquireLock(string key, int timeoutMilliseconds, int? expireInMilliseconds = null) {
             var timeout = TimeSpan.FromMilliseconds(timeoutMilliseconds);
             var expireIn = expireInMilliseconds != null ? TimeSpan.FromMilliseconds(expireInMilliseconds.Value) : defaultExpireIn;
             return AcquireLock(key, timeout, expireIn);
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose() => Dispose(true);
 
+        /// <summary>
+        /// Get all locking information on managed keys.
+        /// </summary>
+        /// <returns>locking information list</returns>
         public Dictionary<string, LockStateInfo> GetAllStates() => AvailableKeys.ToDictionary(key => key, GetState);
 
+        /// <summary>
+        /// Get locking information.
+        /// </summary>
+        /// <param name="key">key for locking information</param>
+        /// <returns>locking information</returns>
         public LockStateInfo GetState(string key) {
             CheckIsDisposed();
             IsValidKey(key);
             return lockMap[key].GetState();
         }
 
+        /// <summary>
+        /// Release the lock by key.
+        /// </summary>
+        /// <param name="key">key for releasing lock</param>
         public void Release(string key) {
             IsValidKey(key);
             if (lockMap.TryGetValue(key, out var lockEntry)) {
@@ -64,6 +107,10 @@ namespace RelationalLock {
             }
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <param name="disposing">if true, call from <see cref="Dispose()"/></param>
         protected virtual void Dispose(bool disposing) {
             if (Interlocked.Exchange(ref disposed, 1) != 0) {
                 return;
@@ -89,6 +136,9 @@ namespace RelationalLock {
             }
         }
 
+        /// <summary>
+        /// List of keys available for locking.
+        /// </summary>
         public IEnumerable<string> AvailableKeys { get; private set; }
     }
 }
