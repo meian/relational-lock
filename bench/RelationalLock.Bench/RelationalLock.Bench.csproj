@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.5"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\RelationalLock.Core\RelationalLock.Core.csproj" />
-    <ProjectReference Include="..\..\src\RelationalLock.Process\RelationalLock.Process.csproj" />
+    <ProjectReference Include="..\..\src\RelationalLock.Core\RelationalLock.Core.csproj"/>
+    <ProjectReference Include="..\..\src\RelationalLock.Process\RelationalLock.Process.csproj"/>
   </ItemGroup>
 </Project>
