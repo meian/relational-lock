@@ -13,13 +13,17 @@ namespace RelationalLock {
             if (keySets.Any() == false) {
                 throw new InvalidOperationException("no key set are configurated.");
             }
-            var keys = keySets.SelectMany(_ => _).Distinct().OrderBy(_ => _).ToList();
+            // collect more than 1 existance.
+            var keys = keySets.SelectMany(_ => _)
+                .Distinct()
+                .OrderBy(_ => _)
+                .ToList();
             return keys
-                .Select(key => new { key, targets = keySets.Where(set => set.Contains(key)).ToList() })
+                .Select(key => new { key, targetSets = keySets.Where(set => set.Contains(key)).ToList() })
                 .Select(e => new RelationalInfo(
                     key: e.key,
-                    relatedKeys: e.targets.SelectMany(_ => _).Distinct().Where(k => k != e.key),
-                    lockKeys: e.targets.Select(GenerateLockKey)
+                    relatedKeys: e.targetSets.SelectMany(_ => _).Distinct().Where(k => k != e.key),
+                    lockKeys: e.targetSets.Select(GenerateLockKey)
                     ))
                 .ToList();
         }
