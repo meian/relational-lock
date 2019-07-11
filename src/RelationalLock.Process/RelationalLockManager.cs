@@ -10,9 +10,9 @@ namespace RelationalLock {
     /// Lock control instance by in process model.
     /// </summary>
     public class RelationalLockManager : IRelationalLockManager {
+        private readonly TimeSpan defaultExpireIn;
+        private readonly TimeSpan defaultTimeout;
         private readonly ImmutableDictionary<string, LockContainer> lockMap;
-        private TimeSpan defaultExpireIn;
-        private TimeSpan defaultTimeout;
         private int disposed;
 
         internal RelationalLockManager(RelationalLockConfigurator configurator) {
