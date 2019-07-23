@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bench", "bench", "{5D73032A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Bench", "bench\RelationalLock.Bench\RelationalLock.Bench.csproj", "{8A5828B7-6152-4D66-A2E9-A039B2F7B417}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelationalLock.Api", "src\RelationalLock.Api\RelationalLock.Api.csproj", "{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{8A5828B7-6152-4D66-A2E9-A039B2F7B417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A5828B7-6152-4D66-A2E9-A039B2F7B417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A5828B7-6152-4D66-A2E9-A039B2F7B417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{210E7B06-5E81-48A2-AAFA-61FD499C9F49} = {065770B8-0051-47D5-B615-5977AF16AC6F}
 		{B263A090-6701-41FB-9974-D4EBDDB5FE6B} = {E022DE1A-42C0-46EB-897E-E7E5321CEB4F}
 		{8A5828B7-6152-4D66-A2E9-A039B2F7B417} = {5D73032A-D0AC-4519-8E36-752829784BE7}
+		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC} = {065770B8-0051-47D5-B615-5977AF16AC6F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26C85CD2-A8DF-4BAC-B867-BFFAB6924686}
