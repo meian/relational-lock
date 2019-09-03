@@ -3,28 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "zz-Settings", "zz-Settings", "{F6A12D72-A55D-439C-B5E7-E98706E14EA1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Libs", "01.Libs", "{DEA701C2-D802-4FE2-B8CF-29B3EA1B400D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Settings", "99.Settings", "{F6A12D72-A55D-439C-B5E7-E98706E14EA1}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.travis.yml = .travis.yml
 		relational-lock.snk = relational-lock.snk
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{065770B8-0051-47D5-B615-5977AF16AC6F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11.Tests", "11.Tests", "{C3396B24-B024-46ED-9602-4972B27A3ADE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Core", "src\RelationalLock.Core\RelationalLock.Core.csproj", "{0DA137A6-D092-4F36-8382-1B28AD106462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Core", "src\RelationalLock.Core\RelationalLock.Core.csproj", "{C56B4CD0-8A5A-4449-8A91-D191C1B01B7C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Process", "src\RelationalLock.Process\RelationalLock.Process.csproj", "{210E7B06-5E81-48A2-AAFA-61FD499C9F49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Process", "src\RelationalLock.Process\RelationalLock.Process.csproj", "{216556D8-6268-4A8F-8678-A561C2EF04DE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E022DE1A-42C0-46EB-897E-E7E5321CEB4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Core.Tests", "test\RelationalLock.Core.Tests\RelationalLock.Core.Tests.csproj", "{EB944767-BF15-400B-B9BE-6311D45ED782}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Core.Tests", "test\RelationalLock.Core.Tests\RelationalLock.Core.Tests.csproj", "{B263A090-6701-41FB-9974-D4EBDDB5FE6B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bench", "bench", "{5D73032A-D0AC-4519-8E36-752829784BE7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Bench", "bench\RelationalLock.Bench\RelationalLock.Bench.csproj", "{8A5828B7-6152-4D66-A2E9-A039B2F7B417}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelationalLock.Api", "src\RelationalLock.Api\RelationalLock.Api.csproj", "{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RelationalLock.Bench", "bench\RelationalLock.Bench\RelationalLock.Bench.csproj", "{5F1C2785-AE59-4398-825F-3D48AC60A1AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,36 +28,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0DA137A6-D092-4F36-8382-1B28AD106462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DA137A6-D092-4F36-8382-1B28AD106462}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DA137A6-D092-4F36-8382-1B28AD106462}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DA137A6-D092-4F36-8382-1B28AD106462}.Release|Any CPU.Build.0 = Release|Any CPU
-		{210E7B06-5E81-48A2-AAFA-61FD499C9F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{210E7B06-5E81-48A2-AAFA-61FD499C9F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{210E7B06-5E81-48A2-AAFA-61FD499C9F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{210E7B06-5E81-48A2-AAFA-61FD499C9F49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B263A090-6701-41FB-9974-D4EBDDB5FE6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B263A090-6701-41FB-9974-D4EBDDB5FE6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B263A090-6701-41FB-9974-D4EBDDB5FE6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B263A090-6701-41FB-9974-D4EBDDB5FE6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A5828B7-6152-4D66-A2E9-A039B2F7B417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A5828B7-6152-4D66-A2E9-A039B2F7B417}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A5828B7-6152-4D66-A2E9-A039B2F7B417}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A5828B7-6152-4D66-A2E9-A039B2F7B417}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C56B4CD0-8A5A-4449-8A91-D191C1B01B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56B4CD0-8A5A-4449-8A91-D191C1B01B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56B4CD0-8A5A-4449-8A91-D191C1B01B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56B4CD0-8A5A-4449-8A91-D191C1B01B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216556D8-6268-4A8F-8678-A561C2EF04DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216556D8-6268-4A8F-8678-A561C2EF04DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216556D8-6268-4A8F-8678-A561C2EF04DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216556D8-6268-4A8F-8678-A561C2EF04DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB944767-BF15-400B-B9BE-6311D45ED782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB944767-BF15-400B-B9BE-6311D45ED782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB944767-BF15-400B-B9BE-6311D45ED782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB944767-BF15-400B-B9BE-6311D45ED782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F1C2785-AE59-4398-825F-3D48AC60A1AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F1C2785-AE59-4398-825F-3D48AC60A1AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F1C2785-AE59-4398-825F-3D48AC60A1AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F1C2785-AE59-4398-825F-3D48AC60A1AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0DA137A6-D092-4F36-8382-1B28AD106462} = {065770B8-0051-47D5-B615-5977AF16AC6F}
-		{210E7B06-5E81-48A2-AAFA-61FD499C9F49} = {065770B8-0051-47D5-B615-5977AF16AC6F}
-		{B263A090-6701-41FB-9974-D4EBDDB5FE6B} = {E022DE1A-42C0-46EB-897E-E7E5321CEB4F}
-		{8A5828B7-6152-4D66-A2E9-A039B2F7B417} = {5D73032A-D0AC-4519-8E36-752829784BE7}
-		{F367DA5F-1A9E-4400-833F-BEDB03B4AFDC} = {065770B8-0051-47D5-B615-5977AF16AC6F}
+		{C56B4CD0-8A5A-4449-8A91-D191C1B01B7C} = {DEA701C2-D802-4FE2-B8CF-29B3EA1B400D}
+		{216556D8-6268-4A8F-8678-A561C2EF04DE} = {DEA701C2-D802-4FE2-B8CF-29B3EA1B400D}
+		{EB944767-BF15-400B-B9BE-6311D45ED782} = {C3396B24-B024-46ED-9602-4972B27A3ADE}
+		{5F1C2785-AE59-4398-825F-3D48AC60A1AC} = {C3396B24-B024-46ED-9602-4972B27A3ADE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {26C85CD2-A8DF-4BAC-B867-BFFAB6924686}
